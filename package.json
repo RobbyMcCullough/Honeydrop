@@ -1,0 +1,11 @@
+{
+  "name": "honeydrop",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "server.js",
+  "dependencies": {
+    "@fastify/multipart": "^8",
+    "fastify": "^4",
+    "marked": "^12"
+  }
+}

@@ -1,0 +1,63 @@
+# honeydrop Caddyfile example
+#
+# Two options for the upload surface:
+#   A) Separate subdomain (recommended — isolates admin from public site)
+#   B) Path on the main domain
+#
+# Generate a password hash first:
+#   caddy hash-password --plaintext 'your-password'
+#
+# Then replace <HASHED_PASSWORD> below with the output.
+
+# ── Option A: upload.yourdomain.com ───────────────────────────────────────
+
+yourdomain.com {
+    # Serve published documents at /s/<slug>/
+    handle_path /s/* {
+        root * /path/to/shared/files
+        file_server
+    }
+
+    # Serve your static landing page
+    handle {
+        root * /path/to/public/site
+        file_server
+    }
+}
+
+upload.yourdomain.com {
+    basicauth {
+        your_username <HASHED_PASSWORD>
+    }
+
+    request_body {
+        max_size 10MB
+    }
+
+    reverse_proxy 127.0.0.1:3001
+}
+
+
+# ── Option B: yourdomain.com/upload/ ──────────────────────────────────────
+#
+# yourdomain.com {
+#     handle_path /s/* {
+#         root * /path/to/shared/files
+#         file_server
+#     }
+#
+#     handle /upload/* {
+#         basicauth {
+#             your_username <HASHED_PASSWORD>
+#         }
+#         request_body {
+#             max_size 10MB
+#         }
+#         reverse_proxy 127.0.0.1:3001
+#     }
+#
+#     handle {
+#         root * /path/to/public/site
+#         file_server
+#     }
+# }

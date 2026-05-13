@@ -1,0 +1,28 @@
+[Unit]
+Description=honeydrop upload service
+After=network.target
+
+[Service]
+Type=simple
+User=YOUR_USER
+WorkingDirectory=/path/to/honeydrop
+
+# Required
+Environment=SHARED_DIR=/path/to/shared/files
+Environment=BASE_URL=https://yourdomain.com/s
+
+# Optional
+Environment=SITE_URL=https://yourdomain.com
+Environment=ANALYTICS_SNIPPET=
+Environment=PORT=3001
+Environment=HOST=127.0.0.1
+
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=honeydrop
+
+[Install]
+WantedBy=multi-user.target

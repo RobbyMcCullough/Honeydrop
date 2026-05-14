@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/emblem.png" width="120" alt="honeydrop">
+  <img src="assets/emblem.png" width="120" alt="Honeydrop">
 </p>
 
-# honeydrop
+# Honeydrop
 
 A small private upload service that publishes static documents at clean URLs. Drop an HTML file or a Markdown note, get a shareable link back. Built on Node.js and Caddy.
 
@@ -13,7 +13,7 @@ make a thing → drop it in → get a URL → share it
 ## How it works
 
 ```
-upload.yourdomain.com          (Caddy basic auth → honeydrop)
+upload.yourdomain.com          (Caddy basic auth → Honeydrop)
       ↓
   POST /upload
       ↓
@@ -44,7 +44,7 @@ npm install --omit=dev
 
 ### 2. Create the shared directory
 
-This is where published documents are written. It should be outside the honeydrop repo so it is never accidentally overwritten by a git pull.
+This is where published documents are written. It should be outside the Honeydrop repo so it is never accidentally overwritten by a git pull.
 
 ```bash
 mkdir -p /var/www/your-shared-dir
